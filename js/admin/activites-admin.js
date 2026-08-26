@@ -104,12 +104,12 @@ async function renderManageList() {
             <li class="programme-manage-item">
               <div class="programme-manage-info">
                 <span class="ticket-tag tag-${entry.categorie}">${CATEGORY_LABELS[entry.categorie] || entry.categorie}</span>
-                <p class="programme-manage-titre">${entry.nom}</p>
-                <p class="programme-manage-meta">${entry.lieu || ""}${entry.horaire ? " · " + entry.horaire : ""} · capacité ${entry.capacite_max}</p>
+                <p class="programme-manage-titre">${escapeHTML(entry.nom)}</p>
+                <p class="programme-manage-meta">${escapeHTML(entry.lieu || "")}${entry.horaire ? " · " + escapeHTML(entry.horaire) : ""} · capacité ${entry.capacite_max}</p>
               </div>
               <div class="programme-manage-actions">
                 <button type="button" class="prog-edit-btn" data-id="${entry.id}">Modifier</button>
-                <button type="button" class="prog-delete-btn" data-id="${entry.id}">Supprimer</button>
+                <button type="button" class="prog-delete-btn" data-id="${entry.id}">Archiver</button>
               </div>
             </li>
           `
@@ -130,10 +130,10 @@ actManageList.addEventListener("click", async (event) => {
 
   if (deleteBtn) {
     const confirmed = window.confirm(
-      "Supprimer définitivement cette activité ? Toutes les inscriptions liées seront supprimées aussi."
+      "Archiver cette activité ? Elle disparaîtra du site public, mais ses inscriptions seront conservées."
     );
     if (confirmed) {
-      await supabaseClient.from("activities").delete().eq("id", deleteBtn.dataset.id);
+      await supabaseClient.from("activities").update({ status: "archived" }).eq("id", deleteBtn.dataset.id);
       renderManageList();
     }
   }
@@ -150,11 +150,11 @@ actManageList.addEventListener("click", async (event) => {
 
   const { data: profile, error: profileError } = await supabaseClient
     .from("profiles")
-    .select("*")
+    .select("id, nom, role, categorie, active")
     .eq("id", session.user.id)
     .single();
 
-  if (profileError || !profile) {
+  if (profileError || !profile || profile.active === false) {
     await supabaseClient.auth.signOut();
     window.location.href = "login.html";
     return;

@@ -80,17 +80,21 @@ form.addEventListener("submit", async (event) => {
   submitBtn.disabled = true;
   submitBtn.textContent = "Envoi en cours…";
 
-  const { error } = await supabaseClient.from("inscriptions").insert({
-    nom_eleve: nomInput.value.trim(),
-    classe: document.getElementById("classe").value,
-    telephone: telephoneInput.value.trim(),
-    activity_id: activiteSelect.value,
+  const { error } = await supabaseClient.rpc("register_inscription_v2", {
+    p_activity_id: activiteSelect.value,
+    p_nom_eleve: nomInput.value.trim(),
+    p_classe: document.getElementById("classe").value,
+    p_telephone: telephoneInput.value.trim() || null,
   });
 
   if (error) {
     // Code 23505 = violation de contrainte UNIQUE (doublon détecté en base)
-    if (error.code === "23505") {
+    if (error.code === "23505" || String(error.message).includes("DUPLICATE_REGISTRATION")) {
       formError.textContent = "Tu es déjà inscrit(e) à cette activité avec ce nom et cette classe.";
+    } else if (String(error.message).includes("ACTIVITY_FULL")) {
+      formError.textContent = "Cette activité vient d’atteindre sa capacité maximale. Choisis une autre activité.";
+    } else if (String(error.message).includes("ACTIVITY_UNAVAILABLE")) {
+      formError.textContent = "Cette activité n’est plus ouverte aux inscriptions.";
     } else {
       formError.textContent = "Une erreur est survenue, réessaie dans un instant.";
     }

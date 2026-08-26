@@ -142,7 +142,8 @@ exportBtn.addEventListener("click", exportCSV);
 async function loadInscriptions() {
   const { data, error } = await supabaseClient
     .from("inscriptions")
-    .select("id, nom_eleve, classe, telephone, created_at, activities(nom, categorie)")
+    .select("id, nom_eleve, classe, telephone, status, created_at, activities(nom, categorie)")
+    .neq("status", "cancelled")
     .order("created_at", { ascending: false });
 
   if (error) {
@@ -177,11 +178,11 @@ async function loadInscriptions() {
 
   const { data: profile, error: profileError } = await supabaseClient
     .from("profiles")
-    .select("*")
+    .select("id, nom, role, categorie, active")
     .eq("id", session.user.id)
     .single();
 
-  if (profileError || !profile) {
+  if (profileError || !profile || profile.active === false) {
     await supabaseClient.auth.signOut();
     window.location.href = "login.html";
     return;

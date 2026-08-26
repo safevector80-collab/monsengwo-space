@@ -121,7 +121,7 @@ async function renderManageList() {
               </div>
               <div class="programme-manage-actions">
                 <button type="button" class="prog-edit-btn" data-id="${entry.id}">Modifier</button>
-                <button type="button" class="prog-delete-btn" data-id="${entry.id}">Supprimer</button>
+                <button type="button" class="prog-delete-btn" data-id="${entry.id}">Archiver</button>
               </div>
             </li>
           `
@@ -142,9 +142,9 @@ manageList.addEventListener("click", async (event) => {
   }
 
   if (deleteBtn) {
-    const confirmed = window.confirm("Supprimer définitivement ce programme ?");
+    const confirmed = window.confirm("Archiver ce programme ? Il ne sera plus visible publiquement.");
     if (confirmed) {
-      await supabaseClient.from("programmes").delete().eq("id", deleteBtn.dataset.id);
+      await supabaseClient.from("programmes").update({ status: "archived" }).eq("id", deleteBtn.dataset.id);
       renderManageList();
     }
   }

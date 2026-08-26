@@ -54,6 +54,7 @@ async function renderProgramme() {
   const { data, error } = await supabaseClient
     .from("programmes")
     .select("*")
+    .eq("status", "published")
     .order("date", { ascending: true });
 
   if (error) {
