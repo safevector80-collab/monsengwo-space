@@ -1,0 +1,57 @@
+name: Installer Monsengwo Space V2
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - v2-test
+    paths:
+      - "Monsengwo_Space_V2_Mutation_Directe*.zip.txt"
+      - ".github/workflows/install-v2.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  installer:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Recuperer la branche
+        uses: actions/checkout@v4
+
+      - name: Extraire et remplacer les anciens fichiers
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          archive="$(find . -maxdepth 1 -type f \
+            -name 'Monsengwo_Space_V2_Mutation_Directe*.zip.txt' \
+            | head -n 1)"
+
+          if [ -z "$archive" ]; then
+            echo "Archive V2 introuvable"
+            exit 1
+          fi
+
+          destination="$(mktemp -d)"
+          unzip -q "$archive" -d "$destination"
+
+          rsync -a --delete \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            "$destination/" ./
+
+          rm -f "$archive"
+
+          git config user.name "Monsengwo V2 Deployment"
+          git config user.email "actions@github.com"
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "Aucun changement à enregistrer"
+            exit 0
+          fi
+
+          git commit -m "Déploiement automatique Monsengwo Space V2"
+          git push
