@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Programmes — Espace comité</title>
+  <link rel="stylesheet" href="../assets/css/style.css" /><link rel="stylesheet" href="../assets/css/v2.css" /><link rel="stylesheet" href="../assets/css/v3-light.css?v=3.1" />
+</head>
+<body>
+  <header class="dashboard-header"><div class="dashboard-header-inner"><div><p class="eyebrow">Espace comité</p><h1>Gestion des programmes</h1></div><nav class="dashboard-header-actions" aria-label="Administration"><a class="logout-btn" href="dashboard.html">Vue d’ensemble</a><a class="logout-btn" href="inscriptions.html">Inscriptions</a><a class="logout-btn" href="activities.html">Activités</a><button class="logout-btn" id="logout-btn">Déconnexion</button></nav></div></header>
+  <main class="dashboard-main">
+    <section class="programme-form-section"><h2>Ajouter un programme</h2><p class="section-hint">Planifiez une répétition ou un rendez-vous visible par les élèves.</p>
+      <form id="programme-form" class="inscription-form" novalidate><input type="hidden" id="prog-edit-id" value="" /><input type="hidden" id="prog-edit-categorie" value="" />
+        <div class="form-group"><label for="prog-activite">Type</label><select id="prog-activite" required><option value="" disabled selected>Choisir</option><option value="theatre">Théâtre</option><option value="defile-moderne">Défilé moderne</option><option value="defile-traditionnel">Défilé traditionnel</option><option value="chant-rap">Chant et Rap</option><option value="danse-afro-hiphop">Danse Afro et Hip-Hop</option><option value="sape">La Sape</option><option value="repetition">Répétition générale</option><option value="reunion">Réunion</option></select></div>
+        <div class="form-group"><label for="prog-titre">Titre</label><input id="prog-titre" required placeholder="Ex : Répétition générale" /></div>
+        <div class="form-group"><label for="prog-jour">Jour</label><select id="prog-jour" required><option value="" disabled selected>Choisir</option><option>Lundi</option><option>Mardi</option><option>Mercredi</option><option>Jeudi</option><option>Vendredi</option><option>Samedi</option></select></div>
+        <div class="form-group"><label for="prog-date">Date</label><input type="date" id="prog-date" required /></div>
+        <div class="form-group"><label for="prog-lieu">Lieu</label><input id="prog-lieu" required placeholder="Ex : Grande salle" /></div>
+        <div class="form-group"><label for="prog-encadrant">Encadrant</label><input id="prog-encadrant" placeholder="Ex : Mme Ilunga" /></div>
+        <div class="form-group"><label for="prog-consignes">Consignes</label><textarea id="prog-consignes" rows="3" placeholder="Ex : Apporter le costume complet."></textarea></div>
+        <p class="form-info" id="programme-form-info" role="status" hidden></p><div class="programme-form-actions"><button class="ticket-btn form-submit" id="programme-submit-btn">Ajouter le programme</button><button type="button" class="cancel-edit-btn" id="prog-cancel-edit" hidden>Annuler</button></div>
+      </form>
+    </section>
+    <section class="programme-list-section"><h2>Programmes existants</h2><ul class="programme-manage-list" id="programme-manage-list"></ul></section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script><script src="../js/supabaseClient.js"></script><script src="../js/data.js"></script><script src="../js/admin/admin-shell.js"></script><script src="../js/admin/programme-admin.js"></script>
+</body>
+</html>

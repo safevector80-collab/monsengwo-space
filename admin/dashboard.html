@@ -18,6 +18,9 @@
         <h1>Dashboard des inscriptions</h1>
       </div>
       <div class="dashboard-header-actions">
+        <a href="../eleves.html" class="logout-btn">Espace élèves</a>
+        <a href="inscriptions.html" class="logout-btn">Inscriptions</a>
+        <a href="programmes.html" class="logout-btn">Programmes</a>
         <a href="activities.html" class="logout-btn">Gérer les activités</a>
         <a href="comptes.html" class="logout-btn">Comptes et rôles</a>
         <button type="button" class="logout-btn" id="logout-btn">Déconnexion</button>
@@ -26,6 +29,18 @@
   </header>
 
   <main class="dashboard-main">
+
+    <section class="portal-intro" aria-label="Navigation de l’administration">
+      <p class="portal-kicker">Centre de pilotage</p>
+      <h2>Tous les outils du comité</h2>
+      <p>Accédez directement aux inscriptions, au programme, aux activités et aux autorisations.</p>
+      <div class="portal-actions">
+        <a href="inscriptions.html" class="portal-action"><strong>Inscriptions</strong><span>Consulter, filtrer et exporter</span></a>
+        <a href="programmes.html" class="portal-action"><strong>Programmes</strong><span>Planifier les répétitions</span></a>
+        <a href="activities.html" class="portal-action"><strong>Activités</strong><span>Créer et gérer les capacités</span></a>
+        <a href="comptes.html" class="portal-action"><strong>Comptes</strong><span>Rôles et autorisations</span></a>
+      </div>
+    </section>
 
     <section class="stats-grid" id="stats-grid" aria-label="Statistiques des inscriptions">
       <!-- Cartes générées par js/admin/dashboard.js -->

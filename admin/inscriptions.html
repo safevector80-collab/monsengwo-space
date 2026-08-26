@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inscriptions — Espace comité</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/v2.css" />
+  <link rel="stylesheet" href="../assets/css/v3-light.css?v=3.1" />
+</head>
+<body>
+  <header class="dashboard-header"><div class="dashboard-header-inner"><div><p class="eyebrow">Espace comité</p><h1>Gestion des inscriptions</h1></div><nav class="dashboard-header-actions" aria-label="Administration"><a class="logout-btn" href="dashboard.html">Vue d’ensemble</a><a class="logout-btn" href="programmes.html">Programmes</a><a class="logout-btn" href="activities.html">Activités</a><button class="logout-btn" id="logout-btn">Déconnexion</button></nav></div></header>
+  <main class="dashboard-main">
+    <section class="stats-grid" id="stats-grid" aria-label="Statistiques"><p class="loading-msg">Chargement des statistiques…</p></section>
+    <section class="filters-bar" aria-label="Filtres"><div class="filter-field"><label for="filter-activite">Activité</label><select id="filter-activite"><option value="tous">Toutes les activités</option></select></div><div class="filter-field"><label for="filter-classe">Classe</label><select id="filter-classe"><option value="tous">Toutes les classes</option></select></div><button type="button" class="ticket-btn export-btn" id="export-btn">Exporter en CSV</button></section>
+    <section class="table-wrapper" aria-label="Liste des inscriptions"><table class="inscriptions-table"><thead><tr><th>Élève</th><th>Classe</th><th>Téléphone</th><th>Activité</th><th>Date</th></tr></thead><tbody id="inscriptions-tbody"></tbody></table><p class="empty-state" id="empty-state" hidden>Aucune inscription ne correspond à ce filtre.</p></section>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script><script src="../js/supabaseClient.js"></script><script src="../js/data.js"></script><script src="../js/admin/dashboard.js"></script>
+</body>
+</html>
