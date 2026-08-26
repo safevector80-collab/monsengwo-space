@@ -1,0 +1,64 @@
+name: Installer Monsengwo Space V2 - Correctif
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - v2-test
+    paths:
+      - ".github/workflows/install-v2-fixed.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  installer:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Recuperer la branche
+        uses: actions/checkout@v4
+
+      - name: Detecter, extraire et installer la V2
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          archive=""
+
+          while IFS= read -r -d '' candidate; do
+            if file "$candidate" | grep -qi "Zip archive"; then
+              archive="$candidate"
+              break
+            fi
+          done < <(find . -maxdepth 1 -type f -print0)
+
+          if [ -z "$archive" ]; then
+            echo "Aucune archive ZIP détectée à la racine"
+            find . -maxdepth 1 -type f -print
+            exit 1
+          fi
+
+          echo "Archive détectée : $archive"
+
+          destination="$(mktemp -d)"
+          unzip -q "$archive" -d "$destination"
+
+          rsync -a --delete \
+            --exclude='.git/' \
+            --exclude='.github/' \
+            "$destination/" ./
+
+          rm -f "$archive"
+
+          git config user.name "Monsengwo V2 Deployment"
+          git config user.email "actions@github.com"
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "Aucun changement à enregistrer"
+            exit 0
+          fi
+
+          git commit -m "Déploiement automatique Monsengwo Space V2"
+          git push

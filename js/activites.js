@@ -91,7 +91,9 @@ async function loadActivities() {
 
   const { data: activitiesData, error: activitiesError } = await supabaseClient
     .from("activities")
-    .select("*");
+    .select("*")
+    .eq("status", "published")
+    .order("created_at", { ascending: true });
 
   if (activitiesError) {
     grid.innerHTML = `<p class="loading-msg">Impossible de charger les activités pour le moment. Réessaie plus tard.</p>`;

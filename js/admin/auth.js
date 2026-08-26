@@ -49,11 +49,11 @@ form.addEventListener("submit", async (event) => {
 
   const { data: profile, error: profileError } = await supabaseClient
     .from("profiles")
-    .select("*")
+    .select("id, nom, role, categorie, active")
     .eq("id", data.user.id)
     .single();
 
-  if (profileError || !profile) {
+  if (profileError || !profile || profile.active === false) {
     formError.textContent = "Ce compte n'a pas encore de profil admin associé. Contacte le superadmin.";
     formError.hidden = false;
     await supabaseClient.auth.signOut();
