@@ -1,0 +1,67 @@
+name: Installer le design clair V3
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/install-design-v3.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  installer:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Recuperer le site
+        uses: actions/checkout@v4
+
+      - name: Installer le correctif visuel V3
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          archive=""
+
+          while IFS= read -r -d '' candidate; do
+            if file "$candidate" | grep -qi "Zip archive"; then
+              if unzip -l "$candidate" | grep -q "v3-light.css"; then
+                archive="$candidate"
+                break
+              fi
+            fi
+          done < <(find . -maxdepth 1 -type f -print0)
+
+          if [ -z "$archive" ]; then
+            echo "Archive du design V3 introuvable"
+            find . -maxdepth 1 -type f -print
+            exit 1
+          fi
+
+          echo "Correctif détecté : $archive"
+
+          destination="$(mktemp -d)"
+          unzip -q "$archive" -d "$destination"
+
+          test -f "$destination/assets/css/v3-light.css"
+          test -f "$destination/index.html"
+          test -f "$destination/admin/activities.html"
+
+          rsync -a "$destination/" ./
+
+          rm -f "$archive"
+
+          git config user.name "Monsengwo Design Deployment"
+          git config user.email "actions@github.com"
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "Aucun changement à enregistrer"
+            exit 0
+          fi
+
+          git commit -m "Remplacement du design par la version claire V3"
+          git push
