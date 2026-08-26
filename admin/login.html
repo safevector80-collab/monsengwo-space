@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connexion — Espace comité</title>
+  <meta name="description" content="Connexion réservée au comité d'organisation de la journée culturelle." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+
+  <a href="../index.html" class="back-link">← Retour à l'accueil</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <p class="eyebrow">Espace comité</p>
+      <h1>Connexion</h1>
+      <p class="subtitle">Réservé aux membres du comité d'organisation. Connecte-toi avec le compte qui t'a été créé.</p>
+    </div>
+  </header>
+
+  <main class="form-section">
+    <form id="login-form" class="inscription-form" novalidate>
+
+      <div class="form-group">
+        <label for="email">Adresse e-mail</label>
+        <input type="email" id="email" name="email" required autocomplete="email" placeholder="ton.compte@ecole.cd" />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="••••••••" />
+      </div>
+
+      <p class="form-error" id="form-error" role="alert" hidden></p>
+      <p class="form-info" id="form-info" role="status" hidden></p>
+
+      <button type="submit" class="ticket-btn form-submit" id="submit-btn">Se connecter</button>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <p>Comité d'organisation — Journée Culturelle</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="../js/supabaseClient.js"></script>
+  <script src="../js/admin/auth.js"></script>
+</body>
+</html>

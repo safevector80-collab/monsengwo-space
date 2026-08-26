@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Programme des répétitions — Journée Culturelle</title>
+  <meta name="description" content="Consulte les jours, heures et lieux des répétitions avant la journée culturelle." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <a href="index.html" class="back-link">← Retour à l'accueil</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <p class="eyebrow">École — Journée Culturelle 2026</p>
+      <h1>Programme des répétitions</h1>
+      <p class="subtitle">Retrouve les jours, heures et lieux des répétitions pour chaque activité avant le grand jour.</p>
+    </div>
+  </header>
+
+  <main class="programme-section" id="programme-section" aria-live="polite">
+    <p class="loading-msg" id="loading-msg">Chargement du programme…</p>
+  </main>
+
+  <footer class="site-footer">
+    <p>Comité d'organisation — Journée Culturelle</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="js/supabaseClient.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/programme.js"></script>
+</body>
+</html>

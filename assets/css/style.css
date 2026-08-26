@@ -1,0 +1,908 @@
+/* ============================================
+   Journée Culturelle — Design tokens
+   ============================================ */
+:root {
+  --bg: #101a2b;
+  --surface: #182338;
+  --surface-2: #1f2c47;
+  --text: #f4f1ea;
+  --text-muted: #93a1bd;
+  --border-soft: rgba(244, 241, 234, 0.14);
+
+  --accent-gold: #f2b705;
+  --accent-coral: #ef6f53;
+  --accent-teal: #43c6ac;
+  --accent-lilac: #b98ce0;
+  --accent-sky: #5aa9e6;
+  --accent-fuchsia: #d6549c;
+  --accent-emerald: #4cb782;
+  --accent-slate: #7c93b3;
+  --accent-amber: #e8a33d;
+
+  --radius: 14px;
+  --max-width: 1100px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================
+   En-tête
+   ============================================ */
+.site-header {
+  padding: 2.5rem 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.header-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.eyebrow {
+  margin: 0 0 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-gold);
+}
+
+.site-header h1 {
+  margin: 0 0 0.5rem;
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: clamp(1.75rem, 5vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.subtitle {
+  margin: 0;
+  max-width: 42ch;
+  color: var(--text-muted);
+  font-size: 0.975rem;
+}
+
+/* ============================================
+   Dashboard admin
+   ============================================ */
+.dashboard-header {
+  padding: 1.5rem 1.25rem;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.dashboard-header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.dashboard-header h1 {
+  margin: 0.2rem 0 0;
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: clamp(1.35rem, 4vw, 1.9rem);
+}
+
+.dashboard-header-actions {
+  display: flex;
+  gap: 0.6rem;
+  flex: 0 0 auto;
+}
+
+.logout-btn {
+  flex: 0 0 auto;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-soft);
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.logout-btn:hover { color: var(--text); border-color: var(--text-muted); }
+
+.dashboard-main {
+  padding: 1.5rem 1.25rem 3rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.9rem;
+}
+
+@media (min-width: 640px) {
+  .stats-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.stat-card {
+  padding: 1rem;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+}
+
+.stat-card-total { background: var(--surface-2); }
+
+.stat-value {
+  margin: 0.5rem 0 0.15rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+}
+
+.stat-label {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.filters-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.9rem;
+}
+
+.filter-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  min-width: 180px;
+  flex: 1 1 180px;
+}
+
+.filter-field label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.filter-field select {
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-soft);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.export-btn {
+  flex: 0 0 auto;
+  border: none;
+  cursor: pointer;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-soft);
+}
+
+.inscriptions-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.inscriptions-table th,
+.inscriptions-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.inscriptions-table thead {
+  background: var(--surface-2);
+}
+
+.inscriptions-table th {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.inscriptions-table tbody tr {
+  background: var(--surface);
+  border-top: 1px solid var(--border-soft);
+}
+
+.programme-form-section {
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+}
+
+.programme-form-section h2 {
+  margin: 0 0 0.3rem;
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: 1.15rem;
+}
+
+.section-hint {
+  margin: 0 0 1.1rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.programme-form-section textarea {
+  padding: 0.7rem 0.85rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-soft);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-family: inherit;
+  resize: vertical;
+}
+
+.repetition-titre {
+  margin: 0 0 0.3rem;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.programme-form-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.cancel-edit-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.cancel-edit-btn:hover { color: var(--text); }
+
+.programme-list-section {
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+}
+
+.programme-list-section h2 {
+  margin: 0 0 1rem;
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: 1.15rem;
+}
+
+.programme-manage-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.programme-manage-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  background: var(--surface-2);
+  border: 1px solid var(--border-soft);
+}
+
+.programme-manage-titre {
+  margin: 0.4rem 0 0.2rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.programme-manage-meta {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.programme-manage-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex: 0 0 auto;
+}
+
+.prog-edit-btn,
+.prog-delete-btn {
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  border: 1px solid var(--border-soft);
+  background: transparent;
+  color: var(--text);
+}
+
+.prog-edit-btn:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+
+.prog-delete-btn:hover { border-color: var(--accent-coral); color: var(--accent-coral); }
+
+.programme-manage-empty {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.empty-state {
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--text-muted);
+  background: var(--surface);
+}
+
+/* ============================================
+   Lien retour (page activités)
+   ============================================ */
+.back-link {
+  display: inline-block;
+  margin: 1.1rem 1.25rem 0;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.back-link:hover { color: var(--text); }
+
+/* ============================================
+   Accueil — cartes de choix
+   ============================================ */
+.choice-section {
+  padding: 1.75rem 1.25rem 3rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.choice-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+@media (min-width: 480px) {
+  .choice-grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+}
+
+.choice-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding: 1.85rem 1.6rem;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  text-decoration: none;
+  color: var(--text);
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.choice-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent-gold);
+}
+
+.choice-badge {
+  align-self: flex-start;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.badge-eleve { background: var(--accent-gold); color: #2a2005; }
+.badge-programme { background: var(--accent-lilac); color: #250f38; }
+.badge-admin { background: var(--accent-teal); color: #062420; }
+
+.choice-card h2 {
+  margin: 0.1rem 0 0;
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.choice-card p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.choice-arrow {
+  margin-top: 0.4rem;
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  transition: transform 0.15s ease;
+}
+
+.choice-card:hover .choice-arrow {
+  transform: translateX(4px);
+  color: var(--accent-gold);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .choice-card, .choice-arrow { transition: none; }
+  .choice-card:hover { transform: none; }
+}
+
+/* ============================================
+   Filtres
+   ============================================ */
+.filters {
+  display: flex;
+  gap: 0.6rem;
+  padding: 1rem 1.25rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.filters::-webkit-scrollbar { display: none; }
+
+.filter-chip {
+  flex: 0 0 auto;
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  background: transparent;
+  color: var(--text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.filter-chip.is-active {
+  background: var(--accent-gold);
+  border-color: var(--accent-gold);
+  color: #10192b;
+  font-weight: 700;
+}
+
+/* ============================================
+   Grille d'activités
+   ============================================ */
+.activities-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  padding: 0.5rem 1.25rem 3rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+@media (min-width: 640px) {
+  .activities-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 960px) {
+  .activities-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.loading-msg {
+  grid-column: 1 / -1;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 2rem 0;
+}
+
+/* ============================================
+   Billet d'activité (signature element)
+   ============================================ */
+.ticket {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+  animation: ticket-in 0.35s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticket { animation: none; }
+}
+
+@keyframes ticket-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ticket-main {
+  padding: 1.25rem 1.25rem 1rem;
+}
+
+.ticket-tag {
+  display: inline-block;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-bottom: 0.65rem;
+}
+
+.tag-theatre             { background: var(--accent-coral); color: #2a120c; }
+.tag-defile-moderne      { background: var(--accent-gold);  color: #2a2005; }
+.tag-defile-traditionnel { background: var(--accent-teal);  color: #062420; }
+.tag-chant-rap           { background: var(--accent-lilac); color: #250f38; }
+.tag-danse-afro-hiphop   { background: var(--accent-sky);   color: #041b30; }
+.tag-sape                { background: var(--accent-fuchsia); color: #300a1c; }
+.tag-repetition           { background: var(--accent-emerald); color: #062418; }
+.tag-repos                { background: var(--accent-slate);   color: #0e1826; }
+.tag-reunion               { background: var(--accent-amber);   color: #2c1804; }
+
+.ticket-title {
+  margin: 0 0 0.6rem;
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.ticket-details {
+  display: flex;
+  gap: 1.25rem;
+  margin: 0 0 0.75rem;
+}
+
+.ticket-details div { display: flex; flex-direction: column; }
+
+.ticket-details dt {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.ticket-details dd {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.ticket-desc {
+  margin: 0;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+/* Souche du billet — divisée par une ligne perforée */
+.ticket-stub {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  margin-top: 0.25rem;
+  background: var(--surface-2);
+  border-top: 2px dashed var(--border-soft);
+}
+
+.ticket-stub::before,
+.ticket-stub::after {
+  content: "";
+  position: absolute;
+  top: -11px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--bg);
+}
+
+.ticket-stub::before { left: -11px; }
+.ticket-stub::after  { right: -11px; }
+
+.ticket-places { margin: 0; line-height: 1.1; }
+
+.places-count { font-size: 1.1rem; font-weight: 700; }
+.places-total { font-size: 0.8rem; color: var(--text-muted); margin-left: 0.15rem; }
+
+.progress-track {
+  margin-top: 0.35rem;
+  width: 100%;
+  max-width: 90px;
+  height: 4px;
+  border-radius: 999px;
+  background: var(--border-soft);
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent-teal);
+  border-radius: 999px;
+}
+
+.ticket-btn {
+  flex: 0 0 auto;
+  padding: 0.55rem 1.1rem;
+  border-radius: 8px;
+  background: var(--accent-gold);
+  color: #10192b;
+  font-weight: 700;
+  font-size: 0.875rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform 0.15s ease;
+}
+
+.ticket-btn:hover { transform: translateY(-1px); }
+
+.ticket-btn.is-full {
+  background: transparent;
+  border: 1px solid var(--border-soft);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+/* Accessibilité clavier */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Programme des répétitions
+   ============================================ */
+.programme-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.25rem 1.25rem 3rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.programme-group {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+}
+
+.programme-group-header {
+  margin-bottom: 0.9rem;
+}
+
+.repetition-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.9rem;
+}
+
+@media (min-width: 640px) {
+  .repetition-list { grid-template-columns: repeat(2, 1fr); }
+}
+
+.repetition-item {
+  padding: 0.9rem 1rem;
+  background: var(--surface-2);
+  border-radius: 10px;
+  border: 1px solid var(--border-soft);
+}
+
+.repetition-when {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+
+.repetition-jour {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.repetition-heure {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.repetition-lieu {
+  margin: 0 0 0.3rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.repetition-encadrant {
+  margin: 0 0 0.3rem;
+  font-size: 0.85rem;
+}
+
+.repetition-consigne {
+  margin: 0;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+/* ============================================
+   Formulaire d'inscription
+   ============================================ */
+.form-section {
+  padding: 0.5rem 1.25rem 3rem;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.inscription-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.7rem 0.85rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-soft);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: 2px solid var(--accent-gold);
+  outline-offset: 1px;
+}
+
+.form-group input:invalid:not(:placeholder-shown) {
+  border-color: var(--accent-coral);
+}
+
+.form-error {
+  margin: 0;
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  background: rgba(239, 111, 83, 0.12);
+  border: 1px solid var(--accent-coral);
+  color: var(--text);
+  font-size: 0.875rem;
+}
+
+.form-info {
+  margin: 0;
+  padding: 0.7rem 0.9rem;
+  border-radius: 8px;
+  background: rgba(90, 169, 230, 0.12);
+  border: 1px solid var(--accent-sky);
+  color: var(--text);
+  font-size: 0.875rem;
+}
+
+.form-submit {
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  font-size: 0.95rem;
+  padding: 0.75rem 1.1rem;
+}
+
+.form-submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   Page de confirmation (merci.html)
+   ============================================ */
+.confirmation-section {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.5rem 1.25rem;
+}
+
+.confirmation-card {
+  max-width: 420px;
+  text-align: center;
+}
+
+.confirmation-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  margin-bottom: 1.25rem;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--accent-teal);
+}
+
+.confirmation-card .eyebrow {
+  justify-content: center;
+}
+
+.confirmation-card h1 {
+  margin: 0 0 0.75rem;
+  font-family: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  font-weight: 700;
+}
+
+.confirmation-text {
+  margin: 0 0 1.75rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.confirmation-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.back-link-btn {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.back-link-btn:hover { color: var(--text); }
+
+/* ============================================
+   Pied de page
+   ============================================ */
+.site-footer {
+  padding: 1.5rem 1.25rem 2.5rem;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}

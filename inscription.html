@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>S'inscrire — Journée Culturelle</title>
+  <meta name="description" content="Inscris-toi à une activité de la journée culturelle." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <a href="activites.html" class="back-link">← Retour aux activités</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <p class="eyebrow">École — Journée Culturelle 2026</p>
+      <h1>Ton inscription</h1>
+      <p class="subtitle" id="activite-summary">Remplis tes informations pour réserver ta place.</p>
+    </div>
+  </header>
+
+  <main class="form-section">
+    <form id="inscription-form" class="inscription-form" novalidate>
+
+      <div class="form-group">
+        <label for="nom">Nom complet</label>
+        <input type="text" id="nom" name="nom" required autocomplete="name" maxlength="60" placeholder="Ex : Jean Dupont" />
+      </div>
+
+      <div class="form-group">
+        <label for="classe">Classe</label>
+        <select id="classe" name="classe" required>
+          <option value="" disabled selected>Choisis ta classe</option>
+
+          <optgroup label="7e année">
+            <option>7e A</option>
+            <option>7e B</option>
+            <option>7e C</option>
+            <option>7e D</option>
+            <option>7e E</option>
+            <option>7e F</option>
+            <option>7e G</option>
+            <option>7e H</option>
+            <option>7e I</option>
+            <option>7e J</option>
+            <option>7e K</option>
+          </optgroup>
+
+          <optgroup label="8e année">
+            <option>8e A</option>
+            <option>8e B</option>
+            <option>8e C</option>
+            <option>8e D</option>
+            <option>8e E</option>
+            <option>8e F</option>
+            <option>8e H</option>
+            <option>8e I</option>
+          </optgroup>
+
+          <optgroup label="1ère Humanités">
+            <option>1ère Commerciale A</option>
+            <option>1ère Commerciale B</option>
+            <option>1ère Littéraire A</option>
+            <option>1ère Littéraire B</option>
+            <option>1ère Littéraire C</option>
+            <option>1ère Pédagogique</option>
+            <option>1ère Scientifique A</option>
+            <option>1ère Scientifique B</option>
+            <option>1ère Scientifique C</option>
+          </optgroup>
+
+          <optgroup label="2e Humanités">
+            <option>2e Commerciale A</option>
+            <option>2e Commerciale B</option>
+            <option>2e Littéraire A</option>
+            <option>2e Littéraire B</option>
+            <option>2e Littéraire C</option>
+            <option>2e Pédagogique</option>
+            <option>2e Scientifique A</option>
+            <option>2e Scientifique B</option>
+            <option>2e Scientifique C</option>
+          </optgroup>
+
+          <optgroup label="3e Humanités">
+            <option>3e Commerciale A</option>
+            <option>3e Littéraire A</option>
+            <option>3e Littéraire B</option>
+            <option>3e Scientifique A</option>
+            <option>3e Scientifique B</option>
+            <option>3e Scientifique C</option>
+          </optgroup>
+
+          <optgroup label="4e Humanités">
+            <option>4e Commerciale A</option>
+            <option>4e Littéraire A</option>
+            <option>4e Littéraire B</option>
+            <option>4e Scientifique A</option>
+            <option>4e Scientifique B</option>
+          </optgroup>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="telephone">Numéro de téléphone</label>
+        <input type="tel" id="telephone" name="telephone" required inputmode="tel" autocomplete="tel" maxlength="15" placeholder="Ex : 099 123 4567" pattern="[0-9+ ]{8,15}" />
+      </div>
+
+      <div class="form-group">
+        <label for="activite">Activité</label>
+        <select id="activite" name="activite" required>
+          <option value="" disabled selected>Chargement des activités…</option>
+        </select>
+      </div>
+
+      <p class="form-error" id="form-error" role="alert" hidden></p>
+
+      <button type="submit" class="ticket-btn form-submit" id="submit-btn">S'inscrire</button>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <p>Comité d'organisation — Journée Culturelle</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="js/supabaseClient.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/inscription.js"></script>
+</body>
+</html>

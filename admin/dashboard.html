@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Espace comité</title>
+  <meta name="description" content="Vue d'ensemble des inscriptions à la journée culturelle." />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+<body>
+
+  <header class="dashboard-header">
+    <div class="dashboard-header-inner">
+      <div>
+        <p class="eyebrow">Espace comité</p>
+        <h1>Dashboard des inscriptions</h1>
+      </div>
+      <div class="dashboard-header-actions">
+        <a href="activites.html" class="logout-btn">Gérer les activités</a>
+        <button type="button" class="logout-btn" id="logout-btn">Déconnexion</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="dashboard-main">
+
+    <section class="stats-grid" id="stats-grid" aria-label="Statistiques des inscriptions">
+      <!-- Cartes générées par js/admin/dashboard.js -->
+    </section>
+
+    <section class="filters-bar" aria-label="Filtrer les inscriptions">
+      <div class="filter-field">
+        <label for="filter-activite">Activité</label>
+        <select id="filter-activite">
+          <option value="tous">Toutes les activités</option>
+        </select>
+      </div>
+
+      <div class="filter-field">
+        <label for="filter-classe">Classe</label>
+        <select id="filter-classe">
+          <option value="tous">Toutes les classes</option>
+        </select>
+      </div>
+
+      <button type="button" class="ticket-btn export-btn" id="export-btn">Exporter en CSV</button>
+    </section>
+
+    <section class="table-wrapper" aria-label="Liste des inscriptions">
+      <table class="inscriptions-table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Classe</th>
+            <th>Téléphone</th>
+            <th>Activité</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody id="inscriptions-tbody">
+          <!-- Lignes générées par js/admin/dashboard.js -->
+        </tbody>
+      </table>
+      <p class="empty-state" id="empty-state" hidden>Aucune inscription ne correspond à ce filtre.</p>
+    </section>
+
+    <section class="programme-form-section" aria-label="Ajouter un programme">
+      <h2>Ajouter un programme</h2>
+      <p class="section-hint">Visible immédiatement sur la page "Programme" des élèves (dans ce navigateur).</p>
+
+      <form id="programme-form" class="inscription-form" novalidate>
+
+        <input type="hidden" id="prog-edit-id" value="" />
+        <input type="hidden" id="prog-edit-categorie" value="" />
+
+    <div class="form-group">
+  <label for="prog-activite">Choisir une activité</label>
+  <select id="prog-activite" name="activite" required>
+    <option value="" disabled selected>Choisir une activité</option>
+    <option value="repetition">Répétition</option>
+    <option value="repos">Repos</option>
+    <option value="reunion">Réunion</option>
+  </select>
+      </div>
+
+        <div class="form-group">
+          <label for="prog-titre">Titre du programme</label>
+          <input type="text" id="prog-titre" name="titre" required placeholder="Ex : Répétition générale" />
+        </div>
+
+        <div class="form-group">
+          <label for="prog-jour">Jour</label>
+          <select id="prog-jour" name="jour" required>
+            <option value="" disabled selected>Choisir un jour</option>
+            <option>Lundi</option>
+            <option>Mardi</option>
+            <option>Mercredi</option>
+            <option>Jeudi</option>
+            <option>Vendredi</option>
+            <option>Samedi</option>
+            <option>Dimanche</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="prog-date">Date</label>
+          <input type="date" id="prog-date" name="date" required />
+        </div>
+
+        <div class="form-group">
+          <label for="prog-lieu">Lieu</label>
+          <input type="text" id="prog-lieu" name="lieu" required placeholder="Ex : Grande salle" />
+        </div>
+
+        <div class="form-group">
+          <label for="prog-encadrant">Encadrant·e</label>
+          <input type="text" id="prog-encadrant" name="encadrant" placeholder="Ex : Mme Ilunga" />
+        </div>
+
+        <div class="form-group">
+          <label for="prog-consignes">Consignes</label>
+          <textarea id="prog-consignes" name="consignes" rows="3" placeholder="Ex : Apporter le costume complet."></textarea>
+        </div>
+
+        <p class="form-info" id="programme-form-info" role="status" hidden></p>
+
+        <div class="programme-form-actions">
+          <button type="submit" class="ticket-btn form-submit" id="programme-submit-btn">Ajouter le programme</button>
+          <button type="button" class="cancel-edit-btn" id="prog-cancel-edit" hidden>Annuler la modification</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="programme-list-section" aria-label="Gérer les programmes existants">
+      <h2>Programmes existants</h2>
+      <ul class="programme-manage-list" id="programme-manage-list">
+        <!-- Généré par js/admin/programme-admin.js -->
+      </ul>
+    </section>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="../js/supabaseClient.js"></script>
+  <script src="../js/data.js"></script>
+  <script src="../js/admin/dashboard.js"></script>
+  <script src="../js/admin/programme-admin.js"></script>
+</body>
+</html>

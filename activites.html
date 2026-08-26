@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Activités — Journée Culturelle</title>
+  <meta name="description" content="Consulte les activités de la journée culturelle et inscris-toi en quelques secondes." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+
+  <a href="index.html" class="back-link">← Retour à l'accueil</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <p class="eyebrow">École — Journée Culturelle 2026</p>
+      <h1>Choisis ton activité</h1>
+      <p class="subtitle">Chaque billet ci-dessous correspond à une place disponible. Réserve la tienne avant qu'elle ne soit complète.</p>
+    </div>
+  </header>
+
+  <nav class="filters" aria-label="Filtrer les activités par catégorie">
+    <button class="filter-chip is-active" data-filter="tous" aria-pressed="true">Toutes</button>
+    <button class="filter-chip" data-filter="theatre" aria-pressed="false">Théâtre</button>
+    <button class="filter-chip" data-filter="defile-moderne" aria-pressed="false">Défilé moderne</button>
+    <button class="filter-chip" data-filter="defile-traditionnel" aria-pressed="false">Défilé traditionnel</button>
+    <button class="filter-chip" data-filter="chant-rap" aria-pressed="false">Chant et Rap</button>
+    <button class="filter-chip" data-filter="danse-afro-hiphop" aria-pressed="false">Danse Afro et Hip-Hop</button>
+    <button class="filter-chip" data-filter="sape" aria-pressed="false">La Sape</button>
+  </nav>
+
+  <main class="activities-grid" id="activities-grid" aria-live="polite">
+    <p class="loading-msg" id="loading-msg">Chargement des activités…</p>
+  </main>
+
+  <footer class="site-footer">
+    <p>Comité d'organisation — Journée Culturelle</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+  <script src="js/supabaseClient.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/activites.js"></script>
+</body>
+</html>
