@@ -1,0 +1,78 @@
+name: Installer les espaces complets V3.1
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/install-v3-1-spaces.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  installer:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Recuperer le site
+        uses: actions/checkout@v4
+
+      - name: Verifier et installer la V3.1
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+
+          archive=""
+
+          while IFS= read -r -d '' candidate; do
+            if file "$candidate" | grep -qi "Zip archive"; then
+              if unzip -l "$candidate" | grep -q "eleves.html" &&
+                 unzip -l "$candidate" | grep -q "admin/inscriptions.html" &&
+                 unzip -l "$candidate" | grep -q "admin/programmes.html"; then
+                archive="$candidate"
+                break
+              fi
+            fi
+          done < <(find . -maxdepth 1 -type f -print0)
+
+          if [ -z "$archive" ]; then
+            echo "Archive V3.1 introuvable ou incomplète"
+            find . -maxdepth 1 -type f -print
+            exit 1
+          fi
+
+          echo "Archive V3.1 détectée : $archive"
+
+          destination="$(mktemp -d)"
+          unzip -q "$archive" -d "$destination"
+
+          test -f "$destination/index.html"
+          test -f "$destination/eleves.html"
+          test -f "$destination/activites.html"
+          test -f "$destination/inscription.html"
+          test -f "$destination/programme.html"
+          test -f "$destination/admin/dashboard.html"
+          test -f "$destination/admin/inscriptions.html"
+          test -f "$destination/admin/programmes.html"
+          test -f "$destination/admin/activities.html"
+          test -f "$destination/admin/comptes.html"
+          test -f "$destination/assets/css/v3-light.css"
+          test -f "$destination/js/admin/admin-shell.js"
+
+          rsync -a "$destination/" ./
+
+          rm -f "$archive"
+
+          git config user.name "Monsengwo V3.1 Deployment"
+          git config user.email "actions@github.com"
+          git add -A
+
+          if git diff --cached --quiet; then
+            echo "Aucun changement à enregistrer"
+            exit 0
+          fi
+
+          git commit -m "Déploiement des espaces complets Monsengwo V3.1"
+          git push
